@@ -2,10 +2,21 @@ pipeline {
     agent any
 
     stages {
-        stage('Test') {
+        stage('Build Docker Image') {
             steps {
-                echo '🧪 Running tests...'
-                bat 'python hello.py'
+                echo 'Building Docker Image...'
+                script {
+                    docker.build('my-python-app')
+                }
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps {
+                echo 'Running Docker Container...'
+                script {
+                    docker.image('my-python-app').run()
+                }
             }
         }
     }
