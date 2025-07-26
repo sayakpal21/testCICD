@@ -8,4 +8,4 @@ WORKDIR /app
 COPY . /app
 
 # Default command
-CMD ["python", "hello.py"]
+CMD ["python", "-u", "hello.py"]
